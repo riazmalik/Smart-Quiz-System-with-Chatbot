@@ -14,8 +14,9 @@
             <a href="#" class="logo">Quizify</a>
             <nav class="navbar">
                 <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Guide</a>
+                <a href="#" onclick="circut()">Circut</a>
+                <a href="#" onclick="troubleshoot()">Troubleshoot</a>
+                <a href="#" id="arduino-connect-btn"><i class="fas fa-microchip"></i> Arduino</a>
             </nav>
         </header>
 
@@ -96,7 +97,6 @@
             <a href="#" class="info-btn continue-btn">Continue.....</a>
         </div>
     </div>
-    
     <!-- Chatbot Interface -->
     <div class="chatbot-container">
         <div class="chatbot-header">
@@ -119,7 +119,27 @@
     <button class="chatbot-toggle-btn" id="chatbot-toggle">
         <i class="fas fa-robot"></i>
     </button>
+    
+<!-- Arduino Connection Modal -->
+<div class="arduino-modal" id="arduino-modal">
+    <div class="arduino-modal-content">
+        <h2>Connect Arduino</h2>
+        <p>Please connect your Arduino device and select the correct port:</p>
+        <select id="port-selector">
+            <option value="">Select a port</option>
+        </select>
+        <button id="connect-btn">Connect</button>
+        <button id="disconnect-btn" disabled>Disconnect</button>
+        <div id="connection-status">Not connected</div>
+        <button id="close-modal">Close</button>
+    </div>
+</div>
 
+<!-- Arduino Status Indicator -->
+<div class="arduino-status" id="arduino-status">
+    <span class="status-dot"></span>
+    <span class="status-text">Arduino: Not Connected</span>
+</div>
 <!-- Scripts -->
     <script src="questions.js"></script>
     <script src="script.js"></script>

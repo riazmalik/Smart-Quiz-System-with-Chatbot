@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino Quiz Buzzer Circuit Diagram</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #fdbb2d;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #fdbb2d;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin: 25px 0 15px;
+            color: #fdbb2d;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            margin: 20px 0 10px;
+            color: #4dc0ff;
+        }
+        
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .component-list {
+            background: rgba(0, 50, 100, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #4dc0ff;
+        }
+        
+        .component-list ul {
+            padding-left: 20px;
+        }
+        
+        .component-list li {
+            margin-bottom: 10px;
+        }
+        
+        .circuit-diagram {
+            background: #0d1b2a;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #4dc0ff;
+        }
+        
+        .wiring-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(0, 50, 100, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .wiring-table th, .wiring-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #4dc0ff;
+        }
+        
+        .wiring-table th {
+            background-color: rgba(0, 100, 200, 0.4);
+            color: #fdbb2d;
+        }
+        
+        .wiring-table tr:hover {
+            background-color: rgba(0, 100, 200, 0.2);
+        }
+        
+        .code-block {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow-x: auto;
+            border: 1px solid #4dc0ff;
+        }
+        
+        pre {
+            color: #d4d4d4;
+            font-family: 'Consolas', 'Monaco', monospace;
+            line-height: 1.5;
+            tab-size: 4;
+            -moz-tab-size: 4;
+            white-space: pre-wrap;
+        }
+        
+        .code-keyword {
+            color: #569cd6;
+        }
+        
+        .code-comment {
+            color: #6a9955;
+        }
+        
+        .code-number {
+            color: #b5cea8;
+        }
+        
+        .code-function {
+            color: #dcdcaa;
+        }
+        
+        .troubleshooting {
+            background: rgba(100, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid #ff4d4d;
+        }
+        
+        .troubleshooting h2 {
+            color: #ff4d4d;
+        }
+        
+        .notes {
+            background: rgba(100, 100, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid #ffcc00;
+        }
+        
+        .notes h2 {
+            color: #ffcc00;
+        }
+        
+        .simulation {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .simulation-btn {
+            background: #4dc0ff;
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin: 0 10px;
+        }
+        
+        .simulation-btn:hover {
+            background: #2a9ce0;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #fdbb2d;
+            color: #fdbb2d;
+        }
+        
+        .buzzer-type {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        
+        .buzzer-card {
+            background: rgba(0, 50, 100, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            width: 45%;
+            text-align: center;
+            border: 1px solid #4dc0ff;
+        }
+        
+        .buzzer-card h3 {
+            color: #fdbb2d;
+            margin-bottom: 15px;
+        }
+        
+        .buzzer-image {
+            width: 100px;
+            height: 100px;
+            background: #0d1b2a;
+            margin: 0 auto 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Arduino Quiz Buzzer Circuit Diagram</h1>
+            <p>Complete guide to wiring your Arduino quiz buzzer system with LEDs</p>
+        </header>
+        
+        <div class="grid">
+            <div class="component-list">
+                <h2>Components Needed</h2>
+                <ul>
+                    <li>Arduino Uno or compatible board</li>
+                    <li>Breadboard</li>
+                    <li>Jumper wires (at least 10)</li>
+                    <li>Green LED</li>
+                    <li>Red LED</li>
+                    <li>Yellow LED</li>
+                    <li>3 x 220Ω resistors (for LEDs)</li>
+                    <li>Buzzer (active or passive)</li>
+                    <li>1 x 100Ω resistor (for active buzzer)</li>
+                    <li>USB cable for Arduino</li>
+                </ul>
+            </div>
+            
+            <div class="circuit-diagram">
+                <h2>Circuit Diagram</h2>
+                <div style="font-size: 8rem; margin: 20px 0;">🛠️</div>
+                <p><em>Visual representation of the complete circuit</em></p>
+                
+                <h3>Arduino Pin Connections</h3>
+                <table class="wiring-table">
+                    <tr>
+                        <th>Arduino Pin</th>
+                        <th>Component</th>
+                        <th>Notes</th>
+                    </tr>
+                    <tr>
+                        <td>Digital 3</td>
+                        <td>Green LED</td>
+                        <td>With 220Ω resistor</td>
+                    </tr>
+                    <tr>
+                        <td>Digital 5</td>
+                        <td>Red LED</td>
+                        <td>With 220Ω resistor</td>
+                    </tr>
+                    <tr>
+                        <td>Digital 6</td>
+                        <td>Yellow LED</td>
+                        <td>With 220Ω resistor</td>
+                    </tr>
+                    <tr>
+                        <td>Digital 9</td>
+                        <td>Buzzer</td>
+                        <td>Add 100Ω resistor for active buzzer</td>
+                    </tr>
+                    <tr>
+                        <td>GND</td>
+                        <td>All components</td>
+                        <td>Common ground</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="buzzer-type">
+            <div class="buzzer-card">
+                <h3>Active Buzzer</h3>
+                <div class="buzzer-image">🔊</div>
+                <p>Produces sound when voltage is applied</p>
+                <p>Only one fixed tone</p>
+                <p>Requires 100Ω resistor</p>
+            </div>
+            
+            <div class="buzzer-card">
+                <h3>Passive Buzzer</h3>
+                <div class="buzzer-image">🎵</div>
+                <p>Requires frequency signal</p>
+                <p>Can create different tones</p>
+                <p>No resistor needed</p>
+            </div>
+        </div>
+        
+        <h2>Wiring Instructions</h2>
+        <ol>
+            <li>Connect each LED to a digital pin on the Arduino (pins 3, 5, 6)</li>
+            <li>Add a 220Ω resistor between each LED and the Arduino pin</li>
+            <li>Connect the negative side (cathode) of each LED to GND</li>
+            <li>Connect the buzzer to digital pin 9</li>
+            <li>If using an active buzzer, add a 100Ω resistor between pin 9 and the buzzer</li>
+            <li>Connect the other side of the buzzer to GND</li>
+            <li>Double-check all connections before powering on</li>
+        </ol>
+        
+        <h2>Arduino Code</h2>
+        <div class="code-block">
+            <pre><span class="code-comment">// Quiz Application Arduino Controller</span>
+<span class="code-comment">// Controls LEDs and buzzer for quiz feedback</span>
+
+<span class="code-comment">// Pin definitions</span>
+<span class="code-keyword">const int</span> GREEN_LED = 3;
+<span class="code-keyword">const int</span> RED_LED = 5;
+<span class="code-keyword">const int</span> YELLOW_LED = 6;
+<span class="code-keyword">const int</span> BUZZER = 9;
+
+<span class="code-keyword">void</span> <span class="code-function">setup</span>() {
+  <span class="code-comment">// Initialize pins</span>
+  pinMode(GREEN_LED, OUTPUT);
+  pinMode(RED_LED, OUTPUT);
+  pinMode(YELLOW_LED, OUTPUT);
+  pinMode(BUZZER, OUTPUT);
+  
+  <span class="code-comment">// Initialize serial communication</span>
+  Serial.<span class="code-function">begin</span>(<span class="code-number">9600</span>);
+  
+  <span class="code-comment">// Initial LED test sequence</span>
+  <span class="code-function">testLeds</span>();
+  
+  Serial.<span class="code-function">println</span>(<span class="code-string">"QUIZ_READY"</span>);
+}
+
+<span class="code-keyword">void</span> <span class="code-function">loop</span>() {
+  <span class="code-comment">// Read serial commands from web quiz</span>
+  <span class="code-keyword">if</span> (Serial.<span class="code-function">available</span>() > <span class="code-number">0</span>) {
+    String command = Serial.<span class="code-function">readStringUntil</span>(<span class="code-string">'\n'</span>);
+    command.<span class="code-function">trim</span>();
+    <span class="code-function">processCommand</span>(command);
+  }
+}
+
+<span class="code-keyword">void</span> <span class="code-function">processCommand</span>(String command) {
+  <span class="code-keyword">if</span> (command == <span class="code-string">"QUIZ_STARTED"</span>) {
+    digitalWrite(GREEN_LED, HIGH);
+    digitalWrite(RED_LED, LOW);
+    digitalWrite(YELLOW_LED, LOW);
+    <span class="code-function">playTone</span>(<span class="code-number">1000</span>, <span class="code-number">200</span>);
+  }
+  <span class="code-keyword">else if</span> (command == <span class="code-string">"CORRECT_ANSWER"</span>) {
+    digitalWrite(GREEN_LED, HIGH);
+    digitalWrite(RED_LED, LOW);
+    digitalWrite(YELLOW_LED, LOW);
+    <span class="code-function">playTone</span>(<span class="code-number">1500</span>, <span class="code-number">300</span>);
+  }
+  <span class="code-comment">// Additional command handlers...</span>
+}
+
+<span class="code-keyword">void</span> <span class="code-function">playTone</span>(<span class="code-keyword">int</span> frequency, <span class="code-keyword">int</span> duration) {
+  <span class="code-keyword">if</span> (frequency <= <span class="code-number">0</span>) {
+    <span class="code-function">noTone</span>(BUZZER);
+    <span class="code-keyword">return</span>;
+  }
+  
+  <span class="code-function">tone</span>(BUZZER, frequency, duration);
+  <span class="code-function">delay</span>(duration);
+  <span class="code-function">noTone</span>(BUZZER);
+}
+
+<span class="code-comment">// Additional functions for LED control and sequences</span></pre>
+        </div>
+        
+        <div class="troubleshooting">
+            <h2>Buzzer Troubleshooting</h2>
+            <h3>No Sound from Buzzer</h3>
+            <ul>
+                <li>Check if your buzzer is active or passive</li>
+                <li>Verify wiring connections (positive to pin 9, negative to GND)</li>
+                <li>Try connecting buzzer directly to 5V (briefly) to test if it works</li>
+                <li>Add a 100Ω resistor for active buzzers</li>
+                <li>Test with different frequencies (500Hz, 1000Hz, 2000Hz)</li>
+            </ul>
+            
+            <h3>LEDs Not Lighting Up</h3>
+            <ul>
+                <li>Verify LED polarity (long leg is positive)</li>
+                <li>Check resistor values (220Ω for LEDs)</li>
+                <li>Test LEDs by connecting directly to 5V with resistor</li>
+            </ul>
+            
+            <h3>Serial Communication Issues</h3>
+            <ul>
+                <li>Ensure correct baud rate (9600) in Serial Monitor</li>
+                <li>Check USB cable connection</li>
+                <li>Try resetting the Arduino</li>
+            </ul>
+        </div>
+        
+        <div class="notes">
+            <h2>Important Notes</h2>
+            <ul>
+                <li>Always disconnect power before making changes to your circuit</li>
+                <li>Double-check polarities of LEDs and buzzer</li>
+                <li>Use the Serial Monitor in the Arduino IDE to send TEST_BUZZER command</li>
+                <li>If using an active buzzer, add a 100Ω resistor in series</li>
+                <li>For best results, power your Arduino through a stable USB connection</li>
+            </ul>
+        </div>
+        
+        <div class="simulation">
+            <h2>Test Your Circuit</h2>
+            <p>After uploading the code, open the Serial Monitor and send these commands:</p>
+            <div>
+                <button class="simulation-btn" onclick="simulateCommand('TEST_BUZZER')">TEST_BUZZER</button>
+                <button class="simulation-btn" onclick="simulateCommand('QUIZ_STARTED')">QUIZ_STARTED</button>
+                <button class="simulation-btn" onclick="simulateCommand('CORRECT_ANSWER')">CORRECT_ANSWER</button>
+            </div>
+            <p id="simulation-result"><em>Simulation results will appear here</em></p>
+        </div>
+        
+        <footer>
+            <p>Arduino Quiz Buzzer System | Created for Web-Based Quiz Application</p>
+            <p>Ensure proper wiring and always double-check connections before powering</p>
+        </footer>
+    </div>
+
+    <script>
+        function simulateCommand(command) {
+            const result = document.getElementById('simulation-result');
+            
+            switch(command) {
+                case 'TEST_BUZZER':
+                    result.innerHTML = '<strong>Buzzer test initiated:</strong> You should hear a sequence of three tones. If not, check your wiring and buzzer type.';
+                    break;
+                case 'QUIZ_STARTED':
+                    result.innerHTML = '<strong>Quiz started:</strong> Green LED should light up and you should hear a confirmation tone.';
+                    break;
+                case 'CORRECT_ANSWER':
+                    result.innerHTML = '<strong>Correct answer:</strong> Green LED should light up and you should hear a higher pitched tone.';
+                    break;
+            }
+            
+            result.style.color = '#4dc0ff';
+        }
+    </script>
+</body>
+</html>

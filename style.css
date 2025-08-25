@@ -1,7 +1,4 @@
-
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
-
-        * {
+* {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
@@ -332,6 +329,12 @@
             cursor: not-allowed;
         }
 
+        .quiz-footer .next-btn:not(:disabled):hover {
+            background: #950170;
+            border-color: #950170;
+            cursor: pointer;
+        }
+
         .timer {
             font-size: 18px;
             font-weight: bold;
@@ -497,6 +500,102 @@
             color: #ff4d4d;
         }
 
+        /* Arduino Connection Modal */
+        .arduino-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .arduino-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .arduino-modal-content {
+            background: #09001d;
+            border: 2px solid #c40094;
+            border-radius: 10px;
+            padding: 20px;
+            width: 400px;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .arduino-modal-content h2 {
+            color: #c40094;
+            margin-bottom: 15px;
+        }
+
+        .arduino-modal-content select,
+        .arduino-modal-content button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #c40094;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .arduino-modal-content button {
+            background: #c40094;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .arduino-modal-content button:hover {
+            background: #950170;
+        }
+
+        #connection-status {
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Arduino Status Indicator */
+        .arduino-status {
+            position: fixed;
+            bottom: 100px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            background: rgba(9, 0, 29, 0.8);
+            border: 1px solid #c40094;
+            border-radius: 20px;
+            padding: 8px 15px;
+            z-index: 1000;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ff4d4d;
+            margin-right: 8px;
+        }
+
+        .status-dot.connected {
+            background: #4caf50;
+        }
+
+        .status-text {
+            font-size: 14px;
+            color: white;
+        }
+
         /* Responsive design */
         @media (max-width: 768px) {
             .percentage-display {
@@ -561,7 +660,7 @@
                 font-size: 36px;
             }
         }
-        /* Chatbot Styles */
+         /* Chatbot Styles */
         .chatbot-toggle-btn {
             position: fixed;
             bottom: 30px;
@@ -739,3 +838,47 @@
                 bottom: 80px;
             }
         }
+        #connection-status {
+    margin: 15px 0;
+    padding: 10px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.arduino-modal-content select {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid #c40094;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.arduino-modal-content select option {
+    background: #09001d;
+    color: white;
+}
+.arduino-modal-content {
+  /* Keep existing styles */
+}
+
+.arduino-modal-content p {
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.arduino-modal-content button {
+  margin: 5px;
+  width: 45%;
+}
+
+#connection-status {
+  margin: 15px 0;
+  padding: 10px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
